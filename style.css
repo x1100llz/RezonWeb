@@ -1,3 +1,6 @@
+/* ==========================================================================
+   1. 基础设定 & 全局样式
+   ========================================================================== */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -5,7 +8,10 @@ body {
     overflow-x: hidden;
 }
 
-/* 背景設定 */
+/* ==========================================================================
+   2. 背景与装饰层
+   ========================================================================== */
+/* 背景图层 2 */
 .bg2 {
     position: absolute;
     top: 0;
@@ -17,7 +23,7 @@ body {
     pointer-events: none;
 }
 
-/* バナー設定 */
+/* 上方横幅 & 滚动动画 */
 .banner {
     position: relative;
     width: 100vw;
@@ -31,12 +37,15 @@ body {
 }
 
 @keyframes bannerScroll {
-    0% { background-position: center top; }
-    50% { background-position: center bottom; }
+    0%   { background-position: center top; }
+    50%  { background-position: center bottom; }
     100% { background-position: center top; }
 }
 
-/* キャラクター画像 */
+/* ==========================================================================
+   3. 内容主体 (人物与文字)
+   ========================================================================== */
+/* 人物形象 */
 .character {
     position: absolute;
     right: -10%;
@@ -46,15 +55,7 @@ body {
     transition: all 0.5s ease;
 }
 
-@media (max-width: 768px) {
-    .character {
-        right: -120%;
-        bottom: 0%;
-        transform: translateX(-50%);
-    }
-}
-
-/* コンテンツエリア (gb3-1.png) */
+/* 文字区域 1 (gb3-1.png) */
 .content {
     position: absolute;
     right: 18%;
@@ -71,16 +72,7 @@ body {
     display: block;
 }
 
-@media (max-width: 768px) {
-    .content {
-        right: 40%;
-        top: 65%;
-        max-width: 60%;
-    }
-    .content img { width: 100%; }
-}
-
-/* テキストエリア (image.png) */
+/* 文字区域 2 (image.png) */
 .text2 {
     position: absolute;
     left: 0%;
@@ -96,19 +88,11 @@ body {
     display: block;
 }
 
-@media (max-width: 768px) {
-    .text2 {
-        left: 50%;
-        top: 20%;
-        transform: translateX(-100%);
-    }
-}
-
-/* セクション2 タイトル */
+/* 第二页标题 */
 .title-page2 {
     position: absolute;
     left: 50%;
-    top: 110vh;
+    top: 130vh;
     transform: translateX(-50%);
     text-align: center;
     font-size: 3vw;
@@ -117,15 +101,9 @@ body {
     white-space: nowrap;
 }
 
-@media (max-width: 768px) {
-    .title-page2 {
-        left: 50%;
-        top: 20%;
-        transform: translateX(-100%);
-    }
-}
-
-/* ボタンセクション */
+/* ==========================================================================
+   4. 交互组件 (按钮)
+   ========================================================================== */
 .button-section {
     position: absolute;
     left: 15%;
@@ -137,17 +115,7 @@ body {
     transition: all 0.5s ease;
 }
 
-@media (max-width: 768px) {
-    .button-section {
-        left: 50%;
-        bottom: -18%; 
-        transform: translateX(-50%);
-        align-items: center; 
-        gap: 15px;
-    }
-}
-
-/* メインボタン */
+/* 大按钮 */
 .btn-large {
     display: inline-block;
     background-color: black;
@@ -163,16 +131,11 @@ body {
     transition: background-color 0.3s ease;
 }
 
-@media (max-width: 768px) {
-    .btn-large {
-        font-size: 15px !important; 
-        padding: 12px 80px !important;
-        border-radius: 8px !important;
-        min-width: 180px !important;
-    }
+.btn-large:hover { 
+    background-color: #333; 
 }
 
-/* サブボタン（グループ） */
+/* 小按钮组容器 */
 .btn-small-group {
     display: flex;
     gap: 10px;
@@ -180,7 +143,7 @@ body {
     justify-content: center;
 }
 
-/* サブボタン（単体） */
+/* 小按钮 */
 .btn-small {
     display: inline-block;
     background-color: black;
@@ -195,15 +158,13 @@ body {
     transition: background-color 0.3s ease;
 }
 
-@media (max-width: 768px) {
-    .btn-small {
-        font-size: 14px !important;
-        padding: 8px 20px !important;
-        border-radius: 6px !important;
-    }
+.btn-small:hover { 
+    background-color: #333; 
 }
 
-/* コピーライト表示 */
+/* ==========================================================================
+   5. 页脚与版权
+   ========================================================================== */
 .copyright {
     position: fixed;
     bottom: 0;
@@ -220,15 +181,6 @@ body {
     box-sizing: border-box;
 }
 
-@media (max-width: 768px) {
-    .copyright {
-        font-size: 10px;
-        padding: 8px 40px;
-        text-align: center;
-    }
-}
-
-/* 閉じるボタン */
 .copyright-close {
     position: absolute;
     right: 1vw;
@@ -245,13 +197,4 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-@media (max-width: 768px) {
-    .copyright-close {
-        font-size: 18px;
-        width: 30px;
-        height: 30px;
-        right: 5px;
-    }
 }
