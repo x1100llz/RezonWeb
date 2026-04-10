@@ -2,9 +2,10 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: white;
+    overflow-x: hidden;
 }
 
-/* 背景2 */
+/* 背景設定 */
 .bg2 {
     position: absolute;
     top: 0;
@@ -16,50 +17,52 @@ body {
     pointer-events: none;
 }
 
-/* 上方横幅 */
+/* バナー設定 */
 .banner {
     position: relative;
     width: 100vw;
     left: 50%;
     margin-left: -50vw;
     height: 50vh;
-
     background: url("bg.jpg") no-repeat center top;
     background-size: cover;
     background-color: black;
-
     animation: bannerScroll 120s linear infinite;
 }
 
 @keyframes bannerScroll {
-    0% {
-        background-position: center top;
-    }
-    50% {
-        background-position: center bottom;
-    }
-    100% {
-        background-position: center top;
-    }
+    0% { background-position: center top; }
+    50% { background-position: center bottom; }
+    100% { background-position: center top; }
 }
 
-/* 人物1（关键） */
+/* キャラクター画像 */
 .character {
     position: absolute;
     right: -10%;
     bottom: 0;
-    height: 100vh; /* 占满整个屏幕高度 */
+    height: 100vh;
     z-index: 3;
+    transition: all 0.5s ease;
 }
 
-/* 文字区域 */
+@media (max-width: 768px) {
+    .character {
+        right: -110%;
+        bottom: 0%;
+        transform: translateX(-50%);
+    }
+}
+
+/* コンテンツエリア (gb3-1.png) */
 .content {
     position: absolute;
-    right: 18%; /* 在人物左边空白处 */
+    right: 18%;
     top: 66%;
     transform: translateY(-50%);
     max-width: 400px;
     z-index: 2;
+    transition: all 0.5s ease;
 }
 
 .content img {
@@ -68,13 +71,23 @@ body {
     display: block;
 }
 
-/* 文字2 */
+@media (max-width: 768px) {
+    .content {
+        right: 40%;
+        top: 65%;
+        max-width: 60%;
+    }
+    .content img { width: 100%; }
+}
+
+/* テキストエリア (image.png) */
 .text2 {
     position: absolute;
     left: 0%;
     top: 3%;
     max-width: 400px;
     z-index: 2;
+    transition: all 0.5s ease;
 }
 
 .text2 img {
@@ -83,11 +96,19 @@ body {
     display: block;
 }
 
-/* 第二頁标题 */
+@media (max-width: 768px) {
+    .text2 {
+        left: 50%;
+        top: 20%;
+        transform: translateX(-100%);
+    }
+}
+
+/* セクション2 タイトル */
 .title-page2 {
     position: absolute;
     left: 50%;
-    top: 130vh;
+    top: 110vh;
     transform: translateX(-50%);
     text-align: center;
     font-size: 3vw;
@@ -96,7 +117,15 @@ body {
     white-space: nowrap;
 }
 
-/* 按钮区域 */
+@media (max-width: 768px) {
+    .title-page2 {
+        left: 50%;
+        top: 20%;
+        transform: translateX(-100%);
+    }
+}
+
+/* ボタンセクション */
 .button-section {
     position: absolute;
     left: 15%;
@@ -105,30 +134,20 @@ body {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    transition: left 0.3s ease;
-}
-
-/* 响应式调整 - 屏幕较小时按钮向左移动 */
-@media (max-width: 1400px) {
-    .button-section {
-        left: 8%;
-    }
-}
-
-@media (max-width: 1000px) {
-    .button-section {
-        left: 3%;
-    }
+    transition: all 0.5s ease;
 }
 
 @media (max-width: 768px) {
     .button-section {
-        left: 2%;
-        bottom: 32%;
+        left: 50%;
+        bottom: -18%; 
+        transform: translateX(-50%);
+        align-items: center; 
+        gap: 15px;
     }
 }
 
-/* 大按钮 */
+/* メインボタン */
 .btn-large {
     display: inline-block;
     background-color: black;
@@ -144,18 +163,24 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.btn-large:hover {
-    background-color: #333;
+@media (max-width: 768px) {
+    .btn-large {
+        font-size: 15px !important; 
+        padding: 12px 80px !important;
+        border-radius: 8px !important;
+        min-width: 180px !important;
+    }
 }
 
-/* 小按钮组 */
+/* サブボタン（グループ） */
 .btn-small-group {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
-/* 小按钮 */
+/* サブボタン（単体） */
 .btn-small {
     display: inline-block;
     background-color: black;
@@ -170,17 +195,21 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.btn-small:hover {
-    background-color: #333;
+@media (max-width: 768px) {
+    .btn-small {
+        font-size: 14px !important;
+        padding: 8px 20px !important;
+        border-radius: 6px !important;
+    }
 }
 
-/* 版权说明 */
+/* コピーライト表示 */
 .copyright {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.9);
     color: #333;
     font-size: 0.75vw;
     padding: 1vw;
@@ -188,9 +217,18 @@ body {
     z-index: 999;
     line-height: 1.6;
     border-top: 1px solid #ddd;
+    box-sizing: border-box;
 }
 
-/* 版权说明关闭按钮 */
+@media (max-width: 768px) {
+    .copyright {
+        font-size: 10px;
+        padding: 8px 40px;
+        text-align: center;
+    }
+}
+
+/* 閉じるボタン */
 .copyright-close {
     position: absolute;
     right: 1vw;
@@ -207,9 +245,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: color 0.3s ease;
 }
 
-.copyright-close:hover {
-    color: #333;
+@media (max-width: 768px) {
+    .copyright-close {
+        font-size: 18px;
+        width: 30px;
+        height: 30px;
+        right: 5px;
+    }
 }
