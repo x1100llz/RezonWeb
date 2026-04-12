@@ -58,11 +58,11 @@ body {
 }
 
 .content img {
-    width: 80%;
+    width: 60%;
 }
 
 .text2 img {
-    width: 200%;
+    max-width: 200%;
 }
 
 
@@ -88,7 +88,7 @@ body {
 
 .content {
     position: absolute;
-    right: 18%;
+    right: 10%;
     top: 66%;
     transform: translateY(-50%);
     max-width: 400px;
@@ -117,7 +117,7 @@ body {
 
 
 /* =========================
-   按钮系统
+   按钮区域
 ========================= */
 
 .button-section {
@@ -129,6 +129,27 @@ body {
     flex-direction: column;
     gap: 5px;
     transition: all 0.3s ease;
+}
+
+/* 手机端：当屏幕宽度小于等于 768px 时生效 */
+@media (max-width: 768px) {
+  .button-section {
+    left: 50%;
+    bottom: 5%;
+    transform: translateX(-50%);
+    align-items: center;
+  }
+  
+  .btn-large {
+    padding: 10px 20px !important;
+    font-size: 14px !important;
+    min-width: 310px !important;
+  }
+  
+  .btn-small {
+    padding: 8px 24px !important;
+    font-size: 12px !important;
+  }
 }
 
 .btn-large {
