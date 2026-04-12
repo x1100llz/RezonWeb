@@ -100,9 +100,10 @@ body {
 }
 
 .text2 {
-    position: absolute;
-    left: 0%;
-    top: 10%;
+    position: fixed;
+    left: 30%;
+    top: 48%;
+    transform: translate(-50%, -50%);
     max-width: 700px;
     z-index: 2;
 }
@@ -112,7 +113,6 @@ body {
         left: 25%;
         top: 27%;
         transform: translate(-50%, -50%);
-
         max-width: 400px;
         z-index: 2;
     }
