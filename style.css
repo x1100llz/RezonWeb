@@ -65,7 +65,8 @@ body {
 }
 
 .text2 img {
-    max-width: 200%;
+    width: 100%;
+    max-width: 700px;
 }
 
 
@@ -101,15 +102,19 @@ body {
 .text2 {
     position: absolute;
     left: 0%;
-    top: 3%;
-    max-width: 400px;
+    top: 10%;
+    max-width: 700px;
     z-index: 2;
 }
 @media (max-width: 768px) {
     .text2 {
-        left: 50%;
-        transform: translateX(-115%) translateY(270px);  /* Y轴向下20px */
-        margin-left: 10px;      /* 向右10px */
+        position: fixed;
+        left: 25%;
+        top: 27%;
+        transform: translate(-50%, -50%);
+
+        max-width: 400px;
+        z-index: 2;
     }
 }
 
