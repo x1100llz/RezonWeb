@@ -55,10 +55,6 @@ body {
 ========================= */
 
 .content img,
-.text2 img {
-    height: auto;
-    display: block;   /* ⭐顺便统一，防止未来再出缝 */
-}
 
 .content img {
     width: 60%;
@@ -66,7 +62,6 @@ body {
 
 .text2 img {
     width: 100%;
-    max-width: 700px;
 }
 
 
@@ -100,22 +95,20 @@ body {
 }
 
 .text2 {
-    position: fixed;
-    left: 30%;
+    position: absolute;
+    right: 40%;
     top: 48%;
-    transform: translate(-50%, -50%);
-    max-width: 700px;
+    transform: translateY(-50%);
+    max-width: 800px;
     z-index: 2;
 }
 @media (max-width: 768px) {
     .text2 {
-        position: fixed;
-        left: 25%;
-        top: 27%;
-        transform: translate(-50%, -50%);
-        max-width: 400px;
-        z-index: 2;
-    }
+    right: 30%;
+    top: 49%;
+    max-width: 800px;
+  }
+    
 }
 
 .title-page2 {
