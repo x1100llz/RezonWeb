@@ -45,8 +45,11 @@ body {
     height: 100vh;
     z-index: 3;
 }
-
-
+@media (max-width:768px) {
+    .character {
+        right: -80%;
+    }
+}
 /* =========================
    图片内部规范（统一尺寸行为）
 ========================= */
@@ -102,6 +105,13 @@ body {
     max-width: 400px;
     z-index: 2;
 }
+@media (max-width: 768px) {
+    .text2 {
+        left: 50%;
+        transform: translateX(-115%) translateY(270px);  /* Y轴向下20px */
+        margin-left: 10px;      /* 向右10px */
+    }
+}
 
 .title-page2 {
     position: absolute;
@@ -135,7 +145,7 @@ body {
 @media (max-width: 768px) {
   .button-section {
     left: 50%;
-    bottom: 5%;
+    bottom: -10%;
     transform: translateX(-50%);
     align-items: center;
   }
