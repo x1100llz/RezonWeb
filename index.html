@@ -9,13 +9,25 @@
 
 <body>
 
-<!-- 背景画像2 -->
-<img src="bg2.png" class="bg2">
+<!-- =========================
+     图片系统（统一HTML分区）
+========================= -->
 
-<!-- トップバナー -->
-<section class="banner"></section>
+<!-- 背景图片 -->
+<div class="image-bg">
+    <img src="./image/bg2.png" class="bg2">
+</div>
 
-<!-- メインコンテンツ -->
+<!-- 横幅背景 -->
+<div class="image-banner">
+    <img src="./image/bg.jpg" class="banner-img">
+</div>
+
+
+<!-- =========================
+     主内容
+========================= -->
+
 <section class="main">
 
     <!-- 按钮区域 -->
@@ -29,32 +41,40 @@
         </div>
     </div>
 
-    <!-- テキスト画像 -->
-    <div class="content">
-        <img src="image.png" alt="レゾンちゃん">
+    <!-- 内容图片 -->
+    <div class="image-content">
+        <div class="content">
+            <img src="./image/image.png" alt="レゾンちゃん">
+        </div>
     </div>
 
-    <!-- テキスト2 -->
-    <div class="text2">
-        <img src="gb3-1.png" alt="文字2">
+    <!-- 第二文本图片 -->
+    <div class="image-text2">
+        <div class="text2">
+            <img src="./image/gb3-1.png" alt="文字2">
+        </div>
     </div>
 
-    <!-- キャラクター -->
+    <!-- 标题 -->
     <h1 class="title-page2">レゾンちゃん紹介</h1>
 
-    <!-- 人物 -->
-    <img src="character.png" class="character">
+    <!-- 人物图片 -->
+    <div class="image-character">
+        <img src="./image/character.png" class="character">
+    </div>
 
 </section>
 
-    <!-- 人物 -->
-    <img src="character.png" class="character">
 
-</section>
+<!-- =========================
+     版权
+========================= -->
 
-<!-- 著作権表示 -->
 <footer class="copyright" id="copyright">
-    <button class="copyright-close" onclick="document.getElementById('copyright').style.display='none';">&times;</button>
+    <button class="copyright-close"
+        onclick="document.getElementById('copyright').style.display='none';">
+        &times;
+    </button>
     当ページは、Happy Elements株式会社「リバースブルー×リバースエンド」の画像を利用しております。<br>
     該当画像の転載・配布等は禁止しております。<br>
     ©Happy Elements K.K

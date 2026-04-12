@@ -1,17 +1,18 @@
-/* ==========================================================================
-   1. 基础设定 & 全局样式
-   ========================================================================== */
+/* =========================
+   基础设置
+========================= */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: white;
-    overflow-x: hidden;
 }
 
-/* ==========================================================================
-   2. 背景与装饰层
-   ========================================================================== */
-/* 背景图层 2 */
+
+/* =========================
+   图片系统（统一管理）
+========================= */
+
+/* 背景图 */
 .bg2 {
     position: absolute;
     top: 0;
@@ -23,39 +24,68 @@ body {
     pointer-events: none;
 }
 
-/* 上方横幅 & 滚动动画 */
-.banner {
+/* 横幅图片 */
+.banner-img {
     position: relative;
+    display: block;          /* ⭐关键：消除黑线 */
     width: 100vw;
     left: 50%;
     margin-left: -50vw;
     height: 50vh;
-    background: url("bg.jpg") no-repeat center top;
-    background-size: cover;
+    object-fit: cover;
     background-color: black;
     animation: bannerScroll 120s linear infinite;
 }
 
-@keyframes bannerScroll {
-    0%   { background-position: center top; }
-    50%  { background-position: center bottom; }
-    100% { background-position: center top; }
-}
-
-/* ==========================================================================
-   3. 内容主体 (人物与文字)
-   ========================================================================== */
-/* 人物形象 */
+/* 人物图片 */
 .character {
     position: absolute;
     right: -10%;
     bottom: 0;
     height: 100vh;
     z-index: 3;
-    transition: all 0.5s ease;
 }
 
-/* 文字区域 1 (gb3-1.png) */
+
+/* =========================
+   图片内部规范（统一尺寸行为）
+========================= */
+
+.content img,
+.text2 img {
+    height: auto;
+    display: block;   /* ⭐顺便统一，防止未来再出缝 */
+}
+
+.content img {
+    width: 80%;
+}
+
+.text2 img {
+    width: 200%;
+}
+
+
+/* =========================
+   动画
+========================= */
+@keyframes bannerScroll {
+    0% {
+        object-position: center top;
+    }
+    50% {
+        object-position: center bottom;
+    }
+    100% {
+        object-position: center top;
+    }
+}
+
+
+/* =========================
+   内容布局
+========================= */
+
 .content {
     position: absolute;
     right: 18%;
@@ -63,36 +93,20 @@ body {
     transform: translateY(-50%);
     max-width: 400px;
     z-index: 2;
-    transition: all 0.5s ease;
 }
 
-.content img {
-    width: 80%;
-    height: auto;
-    display: block;
-}
-
-/* 文字区域 2 (image.png) */
 .text2 {
     position: absolute;
     left: 0%;
     top: 3%;
     max-width: 400px;
     z-index: 2;
-    transition: all 0.5s ease;
 }
 
-.text2 img {
-    width: 200%;
-    height: auto;
-    display: block;
-}
-
-/* 第二页标题 */
 .title-page2 {
     position: absolute;
     left: 50%;
-    top: 130vh;
+    top: 100vh;
     transform: translateX(-50%);
     text-align: center;
     font-size: 3vw;
@@ -101,9 +115,11 @@ body {
     white-space: nowrap;
 }
 
-/* ==========================================================================
-   4. 交互组件 (按钮)
-   ========================================================================== */
+
+/* =========================
+   按钮系统
+========================= */
+
 .button-section {
     position: absolute;
     left: 15%;
@@ -112,10 +128,9 @@ body {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
 }
 
-/* 大按钮 */
 .btn-large {
     display: inline-block;
     background-color: black;
@@ -131,19 +146,16 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.btn-large:hover { 
-    background-color: #333; 
+.btn-large:hover {
+    background-color: #333;
 }
 
-/* 小按钮组容器 */
 .btn-small-group {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
-    justify-content: center;
 }
 
-/* 小按钮 */
 .btn-small {
     display: inline-block;
     background-color: black;
@@ -158,19 +170,21 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.btn-small:hover { 
-    background-color: #333; 
+.btn-small:hover {
+    background-color: #333;
 }
 
-/* ==========================================================================
-   5. 页脚与版权
-   ========================================================================== */
+
+/* =========================
+   版权模块
+========================= */
+
 .copyright {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.95);
     color: #333;
     font-size: 0.75vw;
     padding: 1vw;
@@ -178,7 +192,6 @@ body {
     z-index: 999;
     line-height: 1.6;
     border-top: 1px solid #ddd;
-    box-sizing: border-box;
 }
 
 .copyright-close {
@@ -197,4 +210,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: color 0.3s ease;
+}
+
+.copyright-close:hover {
+    color: #333;
 }
