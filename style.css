@@ -46,15 +46,17 @@ body {
     z-index: 3;
 }
 
+/* 768px 以下：固定在屏幕右侧，不再左右移动 */
 @media (max-width: 768px) {
     .character {
-        right: -25%;
+        right: -180px;
     }
 }
 
+/* 480px 以下也保持同样规则，避免被覆盖 */
 @media (max-width: 480px) {
     .character {
-        right: -80%;
+        right: -300px;
     }
 }
 /* =========================
