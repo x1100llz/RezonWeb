@@ -142,64 +142,54 @@ body {
     z-index: 4;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 8px;
     transition: all 0.3s ease;
+
+    /* 让整组宽度由内容决定，方便“大按钮”和“四小按钮组”保持同宽 */
+    width: fit-content;
 }
 
-/* 手机端：当屏幕宽度小于等于 768px 时生效 */
-@media (max-width: 768px) {
-  .button-section {
-    left: 50%;
-    bottom: -10%;
-    transform: translateX(-50%);
-    align-items: center;
-  }
-  
-  .btn-large {
-    padding: 10px 20px !important;
-    font-size: 14px !important;
-    min-width: 310px !important;
-  }
-  
-  .btn-small {
-    padding: 8px 24px !important;
-    font-size: 12px !important;
-  }
-}
-
+/* 大按钮 */
 .btn-large {
-    display: inline-block;
+    display: block;
     background-color: black;
     color: white;
-    padding: 1vw 3vw;
+    padding: 16px 48px;
     text-decoration: none;
-    border-radius: 0.5vw;
-    font-size: 1.5vw;
+    border-radius: 8px;
+    font-size: 24px;
     font-weight: bold;
     text-align: center;
-    min-width: 12vw;
+    min-width: 220px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    box-sizing: border-box;
 }
 
 .btn-large:hover {
     background-color: #333;
 }
 
+/* 四个小按钮的外层 */
 .btn-small-group {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 四个并排 */
     gap: 10px;
-    flex-wrap: wrap;
+    width: 100%; /* 跟大按钮同宽 */
+    box-sizing: border-box;
 }
 
+/* 小按钮 */
 .btn-small {
-    display: inline-block;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
     background-color: black;
     color: white;
-    padding: 0.8vw 1.5vw;
+    padding: 12px 0;
     text-decoration: none;
-    border-radius: 0.4vw;
-    font-size: 1.1vw;
+    border-radius: 8px;
+    font-size: 16px;
     font-weight: bold;
     text-align: center;
     cursor: pointer;
@@ -210,6 +200,34 @@ body {
     background-color: #333;
 }
 
+@media (max-width: 768px) {
+    .button-section {
+        left: 50%;
+        bottom: 5%;
+        transform: translateX(-50%);
+        align-items: center;
+        width: 80%;
+    }
+
+    .btn-large {
+        font-size: 18px;
+        padding: 16px 20px;
+        min-width: 0;
+        width: 100%;
+    }
+
+    .btn-small-group {
+        width: 100%;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .btn-small {
+        font-size: 12px;
+        padding: 12px 0;
+        min-width: 0;
+        width: 100%;
+    }
+}
 
 /* =========================
    版权模块
