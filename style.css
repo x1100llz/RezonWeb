@@ -45,7 +45,14 @@ body {
     height: 100vh;
     z-index: 3;
 }
-@media (max-width:768px) {
+
+@media (max-width: 768px) {
+    .character {
+        right: -25%;
+    }
+}
+
+@media (max-width: 480px) {
     .character {
         right: -80%;
     }
