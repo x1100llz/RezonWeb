@@ -37,43 +37,35 @@ body {
     animation: bannerScroll 120s linear infinite;
 }
 
-/* 人物图片 */
+/* 外层容器：负责裁剪 */
+.hero-section {
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* 人物图片：贴右，并向右偏移，让右边被裁掉 */
 .character {
     position: absolute;
-    right: -10%;
+    right: 0;
     bottom: 0;
     height: 100vh;
     z-index: 3;
+    transform: translateX(25%);
 }
 
-/* 768px 以下：固定在屏幕右侧，不再左右移动 */
+/* 手机端：偏移稍微小一点，避免露得太少或太多 */
 @media (max-width: 768px) {
     .character {
-        right: -180px;
+        transform: translateX(25%);
     }
 }
 
-/* 480px 以下也保持同样规则，避免被覆盖 */
 @media (max-width: 480px) {
     .character {
-        right: -300px;
+        transform: translateX(30%);
     }
 }
-/* =========================
-   图片内部规范（统一尺寸行为）
-========================= */
-
-.content img,
-
-.content img {
-    width: 60%;
-}
-
-.text2 img {
-    width: 100%;
-}
-
-
 /* =========================
    动画
 ========================= */
@@ -93,16 +85,24 @@ body {
 /* =========================
    内容布局
 ========================= */
-
+/* 世界第一可爱 */
+.content img {
+    width: 60%;
+}
 .content {
     position: absolute;
-    right: 10%;
-    top: 66%;
+    right: 6vw;
+    top: 65%;
     transform: translateY(-50%);
     max-width: 400px;
     z-index: 2;
 }
 
+/* reason */
+.text2 img {
+    width: 100%;
+    display: block;
+}
 .text2 {
     position: absolute;
     right: 40%;
@@ -111,13 +111,20 @@ body {
     max-width: 800px;
     z-index: 2;
 }
+
 @media (max-width: 768px) {
     .text2 {
-    right: 30%;
-    top: 49%;
-    max-width: 800px;
-  }
-    
+        left: 0;
+        right: 0;
+        top: 49%;
+        transform: translateY(-50%);
+        max-width: none;
+        width: 100%;
+    }
+
+    .text2 img {
+        width: 100%;
+    }
 }
 
 .title-page2 {
@@ -140,7 +147,7 @@ body {
 .button-section {
     position: absolute;
     left: 15%;
-    bottom: 20%;
+    bottom: 15%;
     z-index: 4;
     display: flex;
     flex-direction: column;
