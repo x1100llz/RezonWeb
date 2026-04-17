@@ -1,0 +1,10 @@
+.tweet-card {
+  border: 1px solid #ddd;
+  padding: 12px;
+  max-width: 500px;
+  border-radius: 10px;
+}
+.tweet-card img {
+  width: 100%;
+  border-radius: 8px;
+}
