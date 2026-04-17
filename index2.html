@@ -7,13 +7,40 @@
     <link rel="stylesheet" href="style2.css">
 </head>
 <body>
-    <div class="tweet-card">
-  <a href="https://x.com/fxds_AI/status/2045049635220161013?s=20" target="_blank">
-    <h3>@fxds_AI</h3>
-    <p>这里放你整理的推文内容摘要...</p>
-    <img src="预览图片URL" alt="tweet image">
-    <span>点击查看原推文</span>
-  </a>
-</div>
+    <div class="container">
+        <div class="header">
+            <h1>イラスト</h1>
+            <div class="controls">
+                <span class="filter-label">ソート</span>
+                <button class="btn btn-sort" data-sort="date">更新日</button>
+                <button class="btn btn-sort" data-sort="likes">人気順</button>
+            </div>
+        </div>
+
+        <!-- アップロードセクション -->
+        <div class="upload-section">
+            <label for="fileInput" class="btn btn-upload">
+                ＋ 画像をアップロード
+            </label>
+            <input type="file" id="fileInput" accept="image/*" style="display:none">
+            <span class="upload-status" id="uploadStatus"></span>
+        </div>
+
+        <div class="gallery-wrapper">
+            <div class="gallery-grid">
+                <!-- 画像はAPIから動的に読み込まれます -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 画像拡大モーダル -->
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img class="modal-image" src="" alt="">
+        </div>
+    </div>
+
+    <script src="script2.js"></script>
 </body>
 </html>
