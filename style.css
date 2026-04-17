@@ -103,11 +103,14 @@ body {
     width: 100%;
     display: block;
 }
+
 .text2 {
     position: absolute;
-    right: 40%;
+    left: 0%;
     top: 48%;
     transform: translateY(-50%);
+    width: 55%;
+    min-width: 350px;
     max-width: 800px;
     z-index: 2;
 }
@@ -118,6 +121,7 @@ body {
         right: 0;
         top: 49%;
         transform: translateY(-50%);
+        min-width: unset;
         max-width: none;
         width: 100%;
     }
@@ -126,6 +130,7 @@ body {
         width: 100%;
     }
 }
+
 
 .title-page2 {
     position: absolute;
@@ -151,10 +156,8 @@ body {
     z-index: 4;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: clamp(6px, 1.5vw, 12px);
     transition: all 0.3s ease;
-
-    /* 让整组宽度由内容决定，方便“大按钮”和“四小按钮组”保持同宽 */
     width: fit-content;
 }
 
@@ -163,13 +166,13 @@ body {
     display: block;
     background-color: black;
     color: white;
-    padding: 16px 48px;
+    padding: clamp(12px, 2vw, 16px) clamp(32px, 6vw, 48px);
     text-decoration: none;
     border-radius: 8px;
-    font-size: 24px;
+    font-size: clamp(18px, 2.5vw, 24px);
     font-weight: bold;
     text-align: center;
-    min-width: 220px;
+    min-width: clamp(180px, 22vw, 220px);
     cursor: pointer;
     transition: background-color 0.3s ease;
     box-sizing: border-box;
@@ -182,9 +185,9 @@ body {
 /* 四个小按钮的外层 */
 .btn-small-group {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 四个并排 */
-    gap: 10px;
-    width: 100%; /* 跟大按钮同宽 */
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(8px, 1.2vw, 10px);
+    width: 100%;
     box-sizing: border-box;
 }
 
@@ -195,10 +198,10 @@ body {
     box-sizing: border-box;
     background-color: black;
     color: white;
-    padding: 12px 0;
+    padding: clamp(10px, 1.5vw, 12px) 0;
     text-decoration: none;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: clamp(12px, 1.8vw, 16px);
     font-weight: bold;
     text-align: center;
     cursor: pointer;
@@ -216,6 +219,7 @@ body {
         transform: translateX(-50%);
         align-items: center;
         width: 80%;
+        gap: 8px;
     }
 
     .btn-large {
@@ -228,6 +232,7 @@ body {
     .btn-small-group {
         width: 100%;
         grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
     }
 
     .btn-small {
@@ -237,6 +242,7 @@ body {
         width: 100%;
     }
 }
+
 
 /* =========================
    版权模块
