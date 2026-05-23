@@ -15,9 +15,9 @@ body {
     padding: 40px 20px;
 }
 
-/* ========== ヘッダー ========== */
+/* ========== 头部样式 ========== */
 .header {
-    margin-bottom: 24px;
+    margin-bottom: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -43,36 +43,7 @@ body {
     font-weight: 500;
 }
 
-/* ========== アップロードセクション ========== */
-.upload-section {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 32px;
-}
-
-.btn-upload {
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    transition: background-color 0.2s ease;
-    user-select: none;
-}
-
-.btn-upload:hover {
-    background-color: #555;
-}
-
-.upload-status {
-    font-size: 13px;
-    color: #666;
-}
-
-/* ========== ギャラリーグリッド ========== */
+/* ========== 图片网格布局 ========== */
 .gallery-wrapper {
     width: 100%;
     display: flex;
@@ -87,6 +58,7 @@ body {
     max-width: 66.67%;
 }
 
+/* 响应式设计：小屏幕下改为单列 */
 @media (max-width: 1024px) {
     .gallery-grid {
         grid-template-columns: 1fr;
@@ -94,7 +66,7 @@ body {
     }
 }
 
-/* ========== ギャラリーアイテム ========== */
+/* ========== 图片项样式 ========== */
 .gallery-item {
     display: flex;
     flex-direction: column;
@@ -110,7 +82,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* ========== 画像コンテナ ========== */
+/* ========== 图片容器 ========== */
 .image-container {
     width: 100%;
     aspect-ratio: 3 / 4;
@@ -132,7 +104,7 @@ body {
     transform: scale(1.05);
 }
 
-/* ========== 画像情報行 ========== */
+/* ========== 图片信息行 ========== */
 .image-info {
     display: flex;
     justify-content: space-between;
@@ -164,14 +136,14 @@ body {
     color: #ff3b30;
 }
 
-/* ========== アクションボタン ========== */
+/* ========== 操作按钮容器 ========== */
 .action-buttons {
     display: flex;
     gap: 10px;
     padding: 16px;
 }
 
-/* ========== ボタン共通 ========== */
+/* ========== 按钮通用样式 ========== */
 .btn {
     flex: 1;
     padding: 10px 16px;
@@ -188,7 +160,7 @@ body {
     white-space: nowrap;
 }
 
-/* ソートボタン */
+/* 排序按钮 */
 .btn-sort {
     background-color: #f0f0f0;
     color: #333;
@@ -206,7 +178,7 @@ body {
     border-color: #333;
 }
 
-/* いいねボタン */
+/* いいね按钮 */
 .btn-like {
     background-color: white;
     color: #999;
@@ -224,6 +196,7 @@ body {
     border-color: #ff3b30;
 }
 
+/* 修改这里：给爱心固定尺寸并居中，防止切换字符时改变按钮整体高度 */
 .heart {
     display: inline-flex;
     align-items: center;
@@ -232,8 +205,8 @@ body {
     height: 16px;
     line-height: 1;
     font-size: 16px;
+    transition: transform 0.3s ease;
     transform-origin: center;
-    will-change: transform; /* GPU最適化 */
 }
 
 .btn-like.liked .heart {
@@ -244,7 +217,7 @@ body {
     display: inline-block;
 }
 
-/* Xへ移動ボタン */
+/* 访问按钮（推特蓝色） */
 .btn-visit {
     background-color: #1da1f2;
     color: white;
@@ -258,7 +231,7 @@ body {
     transform: scale(1.05);
 }
 
-/* ========== モーダル ========== */
+/* ========== 模态框（放大图片） ========== */
 .modal {
     display: none;
     position: fixed;
@@ -278,8 +251,12 @@ body {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .modal-content {
@@ -290,8 +267,14 @@ body {
 }
 
 @keyframes zoomIn {
-    from { transform: scale(0.7); opacity: 0; }
-    to   { transform: scale(1);   opacity: 1; }
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .modal-image {
@@ -319,14 +302,23 @@ body {
     transform: scale(1.2);
 }
 
-/* ========== レスポンシブ ========== */
+@media (max-width: 768px) {
+    .close {
+        right: 10px;
+        top: 10px;
+        color: white;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+}
+
+/* ========== 响应式调整 ========== */
 @media (max-width: 768px) {
     .container {
         padding: 30px 15px;
     }
 
     .header {
-        margin-bottom: 20px;
+        margin-bottom: 30px;
         justify-content: center;
     }
 
@@ -341,12 +333,12 @@ body {
         justify-content: center;
     }
 
-    .upload-section {
-        justify-content: center;
-    }
-
     .gallery-grid {
         gap: 20px;
+    }
+
+    .image-container {
+        aspect-ratio: 3 / 4;
     }
 
     .btn {
@@ -362,12 +354,6 @@ body {
     .action-buttons {
         padding: 12px;
         gap: 8px;
-    }
-
-    .close {
-        right: 10px;
-        top: 10px;
-        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
 }
 
