@@ -193,7 +193,7 @@ function createItemHTML(item) {
                     <span class="heart">${liked ? '♥' : '♡'}</span>
                     <span class="like-text">いいね</span>
                 </button>
-                <button class="btn btn-visit" data-url="${item.twitterUrl}">Xへ移動</button>
+                <button class="btn btn-visit" data-url="${item.twitterUrl}">Source</button>
             </div>
         </div>
     `;
