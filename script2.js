@@ -107,7 +107,7 @@ const IMAGE_DATA = [
         twitterUrl: 'https://x.com/Sumutokoro71714/status/2045393158784303558?s=20'
     },
     {
-        src: 'https://i.postimg.cc/5trJ8Ts8/HGKy-PTqb0AA-jti.jpg',
+        src: 'https://i.postimg.cc/8CYGL9ZM/HGFj-Cc-Ca-MAAy-OOt.jpg',
         alt: 'イラスト 14',
         date: '2026-04-19',
         likes: 1561,
