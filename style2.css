@@ -12,10 +12,12 @@ body {
 
 .container {
     width: 100%;
-    padding: 40px 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 40px 24px;
 }
 
-/* ========== 头部样式 ========== */
+/* ========== ヘッダー ========== */
 .header {
     margin-bottom: 40px;
     display: flex;
@@ -43,53 +45,61 @@ body {
     font-weight: 500;
 }
 
-/* ========== 图片网格布局 ========== */
+/* ========== ギャラリーグリッド ========== */
 .gallery-wrapper {
     width: 100%;
-    display: flex;
-    justify-content: center;
 }
 
 .gallery-grid {
-    width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    max-width: 66.67%;
+    gap: 24px;
+    /* デフォルト: 2列（縦向き・最小） */
+    grid-template-columns: repeat(2, 1fr);
+    transition: opacity 0.15s ease;
 }
 
-/* 响应式设计：小屏幕下改为单列 */
-@media (max-width: 1024px) {
+/* フェードトランジション */
+.gallery-grid.fading {
+    opacity: 0;
+}
+
+/* タブレット: 3列 */
+@media (min-width: 768px) {
     .gallery-grid {
-        grid-template-columns: 1fr;
-        max-width: 100%;
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
-/* ========== 图片项样式 ========== */
+/* デスクトップ: 4列 */
+@media (min-width: 1200px) {
+    .gallery-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ========== ギャラリーアイテム ========== */
 .gallery-item {
     display: flex;
     flex-direction: column;
     background-color: white;
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
 }
 
 .gallery-item:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-3px);
 }
 
-/* ========== 图片容器 ========== */
+/* ========== 画像コンテナ ========== */
 .image-container {
     width: 100%;
     aspect-ratio: 3 / 4;
     overflow: hidden;
-    background-color: #f0f0f0;
+    background-color: #eee;
     cursor: pointer;
-    position: relative;
 }
 
 .gallery-image {
@@ -97,70 +107,63 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.3s ease;
+    transition: transform 0.35s ease;
 }
 
 .image-container:hover .gallery-image {
-    transform: scale(1.05);
+    transform: scale(1.06);
 }
 
-/* ========== 图片信息行 ========== */
+/* ========== 画像情報行 ========== */
 .image-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px;
+    padding: 12px 14px;
     border-bottom: 1px solid #f0f0f0;
-    font-size: 13px;
+    font-size: 12px;
     color: #999;
 }
 
-.info-left {
-    display: flex;
-    align-items: center;
-}
-
 .date {
-    display: block;
     font-weight: 500;
 }
 
-.info-right {
-    display: flex;
-    align-items: center;
-    gap: 4px;
+.like-count {
+    font-weight: 700;
+    color: #bbb;
+    transition: color 0.3s ease;
 }
 
-.like-count {
-    font-weight: 600;
+.like-count.liked-color {
     color: #ff3b30;
 }
 
-/* ========== 操作按钮容器 ========== */
+/* ========== アクションボタン ========== */
 .action-buttons {
     display: flex;
-    gap: 10px;
-    padding: 16px;
+    gap: 8px;
+    padding: 12px 14px;
 }
 
-/* ========== 按钮通用样式 ========== */
+/* ========== ボタン共通 ========== */
 .btn {
     flex: 1;
-    padding: 10px 16px;
+    padding: 8px 12px;
     border: none;
     border-radius: 20px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 5px;
     white-space: nowrap;
 }
 
-/* 排序按钮 */
+/* ソートボタン */
 .btn-sort {
     background-color: #f0f0f0;
     color: #333;
@@ -169,7 +172,6 @@ body {
 
 .btn-sort:hover {
     background-color: #e8e8e8;
-    border-color: #d0d0d0;
 }
 
 .btn-sort.active {
@@ -178,11 +180,13 @@ body {
     border-color: #333;
 }
 
-/* いいね按钮 */
+/* いいねボタン */
 .btn-like {
     background-color: white;
     color: #999;
     border: 1px solid #e0e0e0;
+    position: relative;
+    overflow: visible;
 }
 
 .btn-like:hover {
@@ -196,52 +200,121 @@ body {
     border-color: #ff3b30;
 }
 
-/* 修改这里：给爱心固定尺寸并居中，防止切换字符时改变按钮整体高度 */
+/* ========== ハートアイコン ========== */
 .heart {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 16px;
     height: 16px;
+    font-size: 15px;
     line-height: 1;
-    font-size: 16px;
-    transition: transform 0.3s ease;
     transform-origin: center;
 }
 
-.btn-like.liked .heart {
-    transform: scale(1.2);
+/* バウンスアニメーション */
+@keyframes heartBounce {
+    0%   { transform: scale(1); }
+    20%  { transform: scale(1.5); }
+    40%  { transform: scale(0.9); }
+    60%  { transform: scale(1.25); }
+    80%  { transform: scale(0.95); }
+    100% { transform: scale(1); }
 }
 
-.like-text {
-    display: inline-block;
+.heart.heart-bounce {
+    animation: heartBounce 0.55s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
 
-/* 访问按钮（推特蓝色） */
+/* ========== ハートパーティクル ========== */
+.heart-particle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    color: #ff3b30;
+    transform: translate(-50%, -50%);
+    animation: particleFly 0.7s ease-out forwards;
+}
+
+@keyframes particleFly {
+    0%   { opacity: 1; transform: translate(-50%, -50%) translate(0, 0) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) translate(var(--dx), var(--dy)) scale(0.3); }
+}
+
+/* 訪問ボタン */
 .btn-visit {
     background-color: #1da1f2;
     color: white;
     border: none;
     flex: 0 0 auto;
-    padding: 10px 20px;
+    padding: 8px 14px;
 }
 
 .btn-visit:hover {
     background-color: #1a91da;
-    transform: scale(1.05);
+    transform: scale(1.04);
 }
 
-/* ========== 模态框（放大图片） ========== */
+/* ========== ページネーション ========== */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 48px;
+    padding-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.page-btn {
+    min-width: 38px;
+    height: 38px;
+    padding: 0 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: white;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.18s ease;
+    user-select: none;
+}
+
+.page-btn:hover:not([disabled]) {
+    border-color: #333;
+    background-color: #f5f5f5;
+}
+
+.page-btn.active {
+    background-color: #333;
+    color: white;
+    border-color: #333;
+}
+
+.page-btn[disabled] {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.page-ellipsis {
+    width: 32px;
+    text-align: center;
+    color: #aaa;
+    font-size: 16px;
+    line-height: 38px;
+    user-select: none;
+}
+
+/* ========== モーダル ========== */
 .modal {
     display: none;
     position: fixed;
     z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    animation: fadeIn 0.3s ease;
+    inset: 0;
 }
 
 .modal.show {
@@ -250,80 +323,78 @@ body {
     justify-content: center;
 }
 
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    animation: fadeIn 0.25s ease;
+}
+
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
 .modal-content {
     position: relative;
-    max-width: 90%;
-    max-height: 100vh;
-    animation: zoomIn 0.3s ease;
+    z-index: 1;
+    max-width: 90vw;
+    max-height: 90vh;
+    animation: zoomIn 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 @keyframes zoomIn {
-    from {
-        transform: scale(0.7);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
+    from { transform: scale(0.75); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
 }
 
 .modal-image {
-    width: 100%;
-    height: 100%;
+    display: block;
+    max-width: 90vw;
+    max-height: 88vh;
     object-fit: contain;
-    max-width: 600px;
-    max-height: 700px;
-    border-radius: 4px;
+    border-radius: 6px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
 .close {
     position: absolute;
-    right: -30px;
-    top: -15px;
+    right: -14px;
+    top: -14px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
     color: white;
-    font-size: 36px;
-    font-weight: bold;
+    font-size: 22px;
+    line-height: 1;
     cursor: pointer;
-    transition: transform 0.2s ease;
-    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+    backdrop-filter: blur(4px);
 }
 
 .close:hover {
-    transform: scale(1.2);
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.15);
 }
 
-@media (max-width: 768px) {
-    .close {
-        right: 10px;
-        top: 10px;
-        color: white;
-        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    }
-}
-
-/* ========== 响应式调整 ========== */
-@media (max-width: 768px) {
+/* ========== レスポンシブ ========== */
+@media (max-width: 767px) {
     .container {
-        padding: 30px 15px;
+        padding: 28px 16px;
     }
 
     .header {
-        margin-bottom: 30px;
+        margin-bottom: 28px;
         justify-content: center;
     }
 
     .header h1 {
-        font-size: 24px;
+        font-size: 22px;
         width: 100%;
         text-align: center;
     }
@@ -334,48 +405,42 @@ body {
     }
 
     .gallery-grid {
-        gap: 20px;
-    }
-
-    .image-container {
-        aspect-ratio: 3 / 4;
-    }
-
-    .btn {
-        font-size: 12px;
-        padding: 8px 12px;
+        gap: 14px;
     }
 
     .image-info {
-        padding: 12px;
-        font-size: 12px;
+        padding: 10px 11px;
+        font-size: 11px;
     }
 
     .action-buttons {
-        padding: 12px;
-        gap: 8px;
-    }
-}
-
-@media (max-width: 480px) {
-    .header h1 {
-        font-size: 20px;
-    }
-
-    .gallery-grid {
-        gap: 15px;
+        padding: 10px 11px;
+        gap: 6px;
     }
 
     .btn {
         font-size: 11px;
+        padding: 7px 9px;
+    }
+
+    .btn-visit {
         padding: 7px 10px;
     }
 
-    .filter-label {
-        font-size: 12px;
+    .close {
+        right: 8px;
+        top: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-grid {
+        gap: 10px;
     }
 
-    .controls {
-        gap: 8px;
+    .page-btn {
+        min-width: 34px;
+        height: 34px;
+        font-size: 13px;
     }
 }
