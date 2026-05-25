@@ -10,60 +10,56 @@
 <body>
 
 <!-- =========================
-     图片系统（统一HTML分区）
+     背景系统
 ========================= -->
 
-<!-- 背景图片 -->
-<div class="image-bg">
-    <img src="./image/bg2.png" class="bg2">
+<!-- 背景 1：bg.jpg - 首屏上半部分，50vh -->
+<div class="bg-layer bg-layer-1">
+    <img src="./image/bg.jpg" alt="background 1" class="bg-img bg-img-1">
 </div>
 
-<!-- 横幅背景 -->
-<div class="image-banner">
-    <img src="./image/bg.jpg" class="banner-img">
+<!-- 背景 2：bg2.png - 紧接背景 1 下方 -->
+<div class="bg-layer bg-layer-2">
+    <img src="./image/bg2.png" alt="background 2" class="bg-img bg-img-2">
 </div>
 
 
 <!-- =========================
-     主内容
+     主内容区域
 ========================= -->
 
-<section class="main">
+<main class="main-content">
+
+    <!-- 文字 reason：gb3-1.png - 第一屏内垂直居中，靠左对齐 -->
+    <div class="reason-container">
+        <img src="./image/gb3-1.png" alt="reason" class="reason-img">
+    </div>
+
+    <!-- 人物图片：character.png -->
+    <div class="character-container">
+        <img src="./image/character.png" alt="character" class="character-img">
+    </div>
+
+    <!-- 介绍卡：image.png - 跟随人物左侧，碰边界停止 -->
+    <div class="intro-card-container">
+        <img src="./image/image.png" alt="intro card" class="intro-card-img">
+    </div>
 
     <!-- 按钮区域 -->
     <div class="button-section">
-        <a href="https://rxr.happyelements.co.jp/" target="_blank"class="btn-large">公式ゲーム『リバ×リバ』</a>
+        <a href="https://rxr.happyelements.co.jp/" target="_blank" class="btn-large">公式ゲーム『リバ×リバ』</a>
         <div class="btn-small-group">
-            <a href="https://x.com/emuemuke?s=20" target="_blank"class="btn-small">原画</a>
-            <a href="https://x.com/aoi___nagatsuki?s=20" target="_blank"class="btn-small">声優</a>
+            <a href="https://x.com/emuemuke?s=20" target="_blank" class="btn-small">原画</a>
+            <a href="https://x.com/aoi___nagatsuki?s=20" target="_blank" class="btn-small">声優</a>
             <a href="./index2.html" class="btn-small">イラスト</a>
             <a href="./index3.html" class="btn-small">情報</a>
-        </div>
-    </div>
-
-    <!-- 文字图片：世界第一可爱的公主殿下 -->
-    <div class="image-content">
-        <div class="content">
-            <img src="./image/image.png" alt="レゾンちゃん">
-        </div>
-        
-    </div>
-        <!-- 人物图片 -->
-    <div class="image-character">
-        <img src="./image/character.png" class="character">
-    </div>
-
-    <!-- 第二文本图片 -->
-    <div class="image-text2">
-        <div class="text2">
-            <img src="./image/gb3-1.png" alt="文字2">
         </div>
     </div>
 
     <!-- 标题 -->
     <h1 class="title-page2">推薦する</h1>
 
-</section>
+</main>
 
 
 <!-- =========================
@@ -75,10 +71,41 @@
         onclick="document.getElementById('copyright').style.display='none';">
         &times;
     </button>
-    当ページは、Happy Elements株式会社「リバースブルー×リバースエンド」の画像を利用しております。<br>
+    当ページは、Happy Elements 株式会社「リバースブルー×リバースエンド」の画像を利用しております。<br>
     該当画像の転載・配布等は禁止しております。<br>
     ©Happy Elements K.K
 </footer>
+
+<!-- 介绍卡位置计算脚本 -->
+<script>
+(function() {
+    function updateIntroCardPosition() {
+        var characterContainer = document.querySelector('.character-container');
+        var introCardContainer = document.querySelector('.intro-card-container');
+        
+        if (!characterContainer || !introCardContainer) return;
+        
+        var charRect = characterContainer.getBoundingClientRect();
+        var cardImg = introCardContainer.querySelector('.intro-card-img');
+        var cardWidth = cardImg.getBoundingClientRect().width;
+        
+        // 计算介绍卡应该放置的位置：人物左侧
+        var idealLeft = charRect.left - cardWidth;
+        
+        // 如果碰到左边界，则固定在视口左侧（留一点边距）
+        var minLeft = 10; // 左边距
+        var finalLeft = Math.max(minLeft, idealLeft);
+        
+        introCardContainer.style.left = finalLeft + 'px';
+        introCardContainer.style.top = (charRect.top + (charRect.height * 0.15)) + 'px';
+    }
+    
+    // 初始化和窗口变化时更新
+    window.addEventListener('load', updateIntroCardPosition);
+    window.addEventListener('resize', updateIntroCardPosition);
+    window.addEventListener('scroll', updateIntroCardPosition);
+})();
+</script>
 
 </body>
 </html>

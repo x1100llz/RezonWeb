@@ -1,154 +1,174 @@
 /* =========================
    基础设置
 ========================= */
-body {
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
     font-family: Arial, sans-serif;
     background: white;
+    position: relative;
 }
 
 
 /* =========================
-   图片系统（统一管理）
+   背景系统重构
 ========================= */
 
-/* 背景图 */
-.bg2 {
-    position: absolute;
-    top: 0;
-    left: 0;
+/* 背景 1：bg.jpg - 首屏上半部分，高度 50vh */
+.bg-layer-1 {
+    position: relative;
     width: 100%;
-    height: 320%;
-    z-index: -1;
-    object-fit: cover;
-    pointer-events: none;
-}
-
-/* 横幅图片 */
-.banner-img {
-    position: relative;
-    display: block;          /* ⭐关键：消除黑线 */
-    width: 100vw;
-    left: 50%;
-    margin-left: -50vw;
     height: 50vh;
-    object-fit: cover;
-    background-color: black;
-    animation: bannerScroll 120s linear infinite;
-}
-
-/* 外层容器：负责裁剪 */
-.hero-section {
-    position: relative;
+    z-index: 1;
     overflow: hidden;
-    height: 100vh;
 }
 
-/* 人物图片：贴右，并向右偏移，让右边被裁掉 */
-.character {
+.bg-img-1 {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+/* 背景 2：bg2.png - 紧接背景 1 下方，完整展示 */
+.bg-layer-2 {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+}
+
+.bg-img-2 {
+    display: block;
+    width: 100%;
+    height: auto;
+    /* 原代码使用 height: 320% + object-fit: cover，这里还原 */
+    aspect-ratio: 1 / 3.2;
+    object-fit: cover;
+}
+
+
+/* =========================
+   主内容区域
+========================= */
+.main-content {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+
+
+/* =========================
+   人物图片：character.png
+   保持原位置、尺寸和层级关系
+========================= */
+.character-container {
     position: absolute;
     right: 0;
     bottom: 0;
     height: 100vh;
     z-index: 3;
     transform: translateX(25%);
+    pointer-events: none;
 }
 
-/* 手机端：偏移稍微小一点，避免露得太少或太多 */
+.character-img {
+    display: block;
+    height: 100%;
+    width: auto;
+}
+
+/* 手机端调整 */
 @media (max-width: 768px) {
-    .character {
+    .character-container {
         transform: translateX(25%);
     }
 }
 
 @media (max-width: 480px) {
-    .character {
+    .character-container {
         transform: translateX(30%);
     }
 }
-/* =========================
-   动画
-========================= */
-@keyframes bannerScroll {
-    0% {
-        object-position: center top;
-    }
-    50% {
-        object-position: center bottom;
-    }
-    100% {
-        object-position: center top;
-    }
-}
 
 
 /* =========================
-   内容布局
+   文字 reason：gb3-1.png
+   第一屏内垂直居中，靠左对齐
+   屏幕变小时等比缩小
 ========================= */
-/* 世界第一可爱 */
-.content img {
-    width: 60%;
-}
-.content {
+.reason-container {
     position: absolute;
-    right: 6vw;
-    top: 65%;
-    transform: translateY(-50%);
-    max-width: 400px;
-    z-index: 2;
-}
-
-/* reason */
-.text2 img {
-    width: 100%;
-    display: block;
-}
-
-.text2 {
-    position: absolute;
-    left: 0%;
-    top: 48%;
+    left: 0;
+    top: 50%;
     transform: translateY(-50%);
     width: 55%;
     min-width: 350px;
     max-width: 800px;
     z-index: 2;
+    pointer-events: none;
 }
 
+.reason-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 响应式：屏幕变小时等比缩小，不裁切不溢出 */
 @media (max-width: 768px) {
-    .text2 {
+    .reason-container {
         left: 0;
         right: 0;
-        top: 49%;
+        top: 50%;
         transform: translateY(-50%);
         min-width: unset;
         max-width: none;
         width: 100%;
+        padding: 0 5%;
     }
-
-    .text2 img {
+    
+    .reason-img {
         width: 100%;
+        height: auto;
     }
 }
 
 
-.title-page2 {
+/* =========================
+   介绍卡：image.png
+   跟随人物左侧，碰边界停止
+   保持原始尺寸，不缩放
+   层级位于人物之下
+========================= */
+.intro-card-container {
     position: absolute;
-    left: 50%;
-    top: 100vh;
-    transform: translateX(-50%);
-    text-align: center;
-    font-size: 3vw;
-    color: black;
-    z-index: 2;
-    white-space: nowrap;
+    z-index: 2; /* 位于人物 (z-index:3) 之下 */
+    pointer-events: none;
+    /* left 和 top 由 JavaScript 动态计算 */
+}
+
+.intro-card-img {
+    display: block;
+    width: auto;
+    height: auto;
+    /* 保持原始尺寸，不缩放 */
 }
 
 
 /* =========================
    按钮区域
+   保持原位置不变
 ========================= */
-
 .button-section {
     position: absolute;
     left: 15%;
@@ -212,6 +232,7 @@ body {
     background-color: #333;
 }
 
+/* 移动端按钮样式 */
 @media (max-width: 768px) {
     .button-section {
         left: 50%;
@@ -245,9 +266,24 @@ body {
 
 
 /* =========================
+   标题
+========================= */
+.title-page2 {
+    position: absolute;
+    left: 50%;
+    top: 100vh;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 3vw;
+    color: black;
+    z-index: 2;
+    white-space: nowrap;
+}
+
+
+/* =========================
    版权模块
 ========================= */
-
 .copyright {
     position: fixed;
     bottom: 0;
